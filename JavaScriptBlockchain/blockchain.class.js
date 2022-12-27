@@ -1,10 +1,13 @@
 export class BlockChain {
-  constructor() {
+  constructor(genesisBlock) {
     this.chain = [];
+
+    // adding a genesis block as first block
+    this.chain.push(Object.freeze(genesisBlock));
   }
 
   addBlock(block) {
-    block.previous_hash = this.getPreviousBlock().hashBlock();
+    block.previous_hash = this.getPreviousBlock().hashData();
     this.chain.push(Object.freeze(block));
   }
 
@@ -12,7 +15,7 @@ export class BlockChain {
     let isInvalid = this.chain.find((currentBlock, index) => {
       let previousBlock = this.chain[index - 1];
       return (
-        previousBlock & (previousBlock.hashBlock != currentBlock.previous_hash)
+        previousBlock & (previousBlock.hashData() != currentBlock.previous_hash)
       );
     });
     if (isInvalid) {

@@ -1,4 +1,4 @@
-import { B } from "./sha256.js";
+import sha256 from 'js-sha256'
 
 export class Block {
   constructor(time = Date.now(), data = {}) {
@@ -6,11 +6,12 @@ export class Block {
     this.data = data;
     this.previous_hash = "";
     this.nonce = 0;
-    this.difficulty = "000";
+    this.difficulty = "000000";
   }
 
+  
   hashData() {
-    return B.sha256(
+    return sha256(
       this.nonce +
         this.previous_hash +
         this.timestamp +

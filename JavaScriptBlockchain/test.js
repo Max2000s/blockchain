@@ -1,10 +1,16 @@
-import { Block } from './block.class.mjs';
-import { BlockChain } from './blockchain.class.mjs';
+import { Block } from './block.class.js';
+import { BlockChain } from './blockchain.class.js';
 
 console.log('\n+---------- Starting to create blockchain! ----------+\n')
+let test = [];
+
+console.log(test[test.length -1]);
+
+// create genesis block 
+let genesis_block = new Block();
 
 // create blockchain
-let blockchain = new BlockChain();
+let blockchain = new BlockChain(genesis_block);
 
 // mine new blocks
 mine();
